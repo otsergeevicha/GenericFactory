@@ -1,0 +1,14 @@
+    public class Factory<T> where T : Object
+    {
+        private readonly string _path;
+
+        public Factory(string path) => 
+            _path = path;
+        
+        public Factory() : this(typeof(T).FullName.Replace(".", "/")){}
+
+        public T Create()
+        {
+            return Object.Instantiate(Resources.Load<T>(_path));
+        }
+    }
